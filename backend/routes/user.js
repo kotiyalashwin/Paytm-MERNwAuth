@@ -40,7 +40,7 @@ userRouter.post("/signup", async (req, res) => {
 
   //this will return us a user with the same username as in the body
   const user = User.findOne({
-    userName: body.userName,
+    username: body.username,
   });
 
   //CHECK if user already exist in the database
@@ -78,13 +78,13 @@ userRouter.post("/signin", async (req, res) => {
   }
 
   const userExist = await User.findOne({
-    userName: body.userName,
+    username: body.username,
   });
 
   if (userExist) {
     if (
-      body.userName != userExist.userName ||
-      body.passwod != userExist.passwod
+      body.username != userExist.username ||
+      body.passwod != userExist.password
     ) {
       return res.status(411).json({
         message: "Wrong Credentials",
@@ -120,25 +120,26 @@ userRouter.get("/bulk", async (req, res) => {
 
   const users = await User.find({
     $or: [
-      // either firrstname or lastname
       {
-        firstName: {
-          $regex: filter, // to match substring we use regex
+        firstname: {
+          $regex: filter,
         },
       },
       {
-        lastName: {
+        lastname: {
           $regex: filter,
         },
       },
     ],
   });
 
+  // const users = User;
+
   res.json({
     user: users.map((user) => ({
       username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      firstName: user.firstname,
+      lastName: user.lastname,
       _id: user._id,
     })),
   });
