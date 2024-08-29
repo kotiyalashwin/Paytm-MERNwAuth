@@ -5,12 +5,17 @@ import Input from "../Components/Input";
 import SubHead from "../Components/SubHead";
 import SubmitButton from "../Components/SubmitButton";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+  if (localStorage.getItem("token")) {
+    localStorage.removeItem("token");
+  }
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div className="h-screen bg-slate-300 flex justify-center">
@@ -51,6 +56,7 @@ export default function SignUp() {
                   }
                 );
                 localStorage.setItem("token", response.data.token);
+                navigate("/dashboard");
               }}
               label={"SignUp"}
             />

@@ -115,8 +115,10 @@ userRouter.put("/", authMiddleware, async (req, res) => {
   });
 });
 
-userRouter.get("/bulk", async (req, res) => {
+userRouter.get("/bulk", authMiddleware, async (req, res) => {
   const filter = req.query.filter || "";
+  const loggedId = req.userId;
+  // console.log(loggedId);
 
   const users = await User.find({
     $or: [
@@ -133,15 +135,23 @@ userRouter.get("/bulk", async (req, res) => {
     ],
   });
 
-  // const users = User;
-
   res.json({
-    user: users.map((user) => ({
-      username: user.username,
-      firstName: user.firstname,
-      lastName: user.lastname,
-      _id: user._id,
-    })),
+    id: loggedId,
+    user: users
+      .filter((s) => s.id !== loggedId)
+      .map((user) => ({
+        username: user.username,
+        firstName: user.firstname,
+        lastName: user.lastname,
+        _id: user._id,
+      })),
+  });
+});
+
+userRouter.get("/admin", authMiddleware, async (req, res) => {
+  const user = await User.find({ _id: req.userId });
+  res.json({
+    user,
   });
 });
 

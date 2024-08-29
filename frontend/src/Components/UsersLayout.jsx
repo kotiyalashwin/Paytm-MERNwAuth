@@ -6,10 +6,15 @@ import User from "./User";
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/v1/user/bulk?filter=" + filter)
+      .get("http://localhost:3000/api/v1/user/bulk?filter=" + filter, {
+        headers: {
+          Authorization: "Bearer " + token, //the token is a variable which holds the token
+        },
+      })
       .then((response) => setUsers(response.data.user));
   }, [filter]);
 
