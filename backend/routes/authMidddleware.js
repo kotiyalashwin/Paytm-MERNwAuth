@@ -5,7 +5,7 @@ const authMiddleware = (req, res, next) => {
   const authHead = req.headers.authorization;
 
   if (!authHead || !authHead.startsWith("Bearer ")) {
-    return res.status(400).json({});
+    return res.status(400).json({ message: "no auth" });
   }
 
   const token = authHead.split(" ")[1];
