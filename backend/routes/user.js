@@ -15,7 +15,7 @@ const signupSchema = zod.object({
 });
 
 const signinSchema = zod.object({
-  userName: zod.string(),
+  username: zod.string(),
   password: zod.string(),
 });
 
@@ -84,7 +84,7 @@ userRouter.post("/signin", async (req, res) => {
   if (userExist) {
     if (
       body.username != userExist.username ||
-      body.passwod != userExist.password
+      body.password != userExist.password
     ) {
       return res.status(411).json({
         message: "Wrong Credentials",

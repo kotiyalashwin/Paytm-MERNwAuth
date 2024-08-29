@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function Appbar({ name }) {
   return (
-    <div className="w-full  h-14 p-4 flex justify-between border-b-2">
+    <div className="w-full  h-16 p-4 flex justify-between border-b-2 bg-[#040F16] text-white">
       <p className="text-2xl font-semibold">Welcome to Paytm</p>
 
       <div className="flex h-full items-center">
@@ -12,7 +12,7 @@ export default function Appbar({ name }) {
           Hello , {name}
         </div>
         <div className="rounded-full h-12 w-12 bg-slate-200 flex  justify-center mt-1 mr-2">
-          <div className=" flex flex-col justify-center h-full text-xl">
+          <div className=" flex flex-col justify-center text-black h-full text-xl">
             {name.toUpperCase()[0]}
           </div>
         </div>

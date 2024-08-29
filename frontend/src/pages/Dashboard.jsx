@@ -30,7 +30,7 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="h-screen w-screen p-4">
+    <div className="h-screen w-screen">
       <Appbar name={user} />
       <Balance />
       <UsersLayout />

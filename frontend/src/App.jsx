@@ -6,7 +6,11 @@ import Landing from "./pages/Landing";
 
 function App() {
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: `url('/v991-au-002.jpg)`,
+      }}
+    >
       <BrowserRouter>
         <Routes>
           <Route path="/signup" element={<SignUp />} />

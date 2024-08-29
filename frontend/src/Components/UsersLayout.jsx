@@ -34,7 +34,7 @@ export default function Users() {
 
 function UsersList({ users }) {
   return (
-    <div className="w-full h-full border p-4 ">
+    <div className="w-full h-full border p-4 text-white  ">
       <ul>
         {users.map((el) => (
           <li className="m-3">
